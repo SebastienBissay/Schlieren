@@ -6,7 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class Parameters {
-    public static final long SEED = 11;
+    public static final long SEED = 11021985;
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 1000;
+    public static final int LENGTH = 1000;
+    public static final float NOISE_SCALE = 1 / 500f;
+    public static final float NOISE_EXPONENT = 1.25f;
+    public static final Color BACKGROUND_COLOR = new Color(255);
+    public static final Color STROKE_COLOR = new Color(0, 10);
 
     /**
      * Helper method to extract the constants in order to save them to a json file
@@ -17,7 +24,7 @@ public final class Parameters {
         Map<String, Object> map = new HashMap<>();
 
         Field[] declaredFields = Parameters.class.getDeclaredFields();
-        for(Field field : declaredFields) {
+        for (Field field : declaredFields) {
             field.setAccessible(true);
             map.put(field.getName(), field.get(Parameters.class));
         }
@@ -25,7 +32,7 @@ public final class Parameters {
         return Collections.singletonMap(Parameters.class.getSimpleName(), map);
     }
 
-    public record Color (float red, float green, float blue, float alpha) {
+    public record Color(float red, float green, float blue, float alpha) {
         public Color(float red, float green, float blue) {
             this(red, green, blue, 255);
         }
